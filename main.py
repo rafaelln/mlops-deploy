@@ -6,12 +6,7 @@ import pickle
 import os
 
 colunas = ['tamanho','ano','garagem']
-
-# deploy via computer engine
-#modelo = pickle.load(open('../../models/modelo.sav','rb'))
-
-#deploy via Docker
-modelo = pickle.load(open('models/modelo.sav','rb'))
+modelo = pickle.load(open('/models/modelo.sav','rb'))
 
 app = Flask(__name__)
 app.config['BASIC_AUTH_USERNAME'] = os.environ.get('BASIC_AUTH_USERNAME')
@@ -39,4 +34,6 @@ def cotacao():
     preco = modelo.predict([dados_input])
     return jsonify(preco=preco[0])
 
-app.run(debug=True, host='0.0.0.0')
+
+if __name__=='__main__'
+    app.run(debug=True, host='0.0.0.0')
